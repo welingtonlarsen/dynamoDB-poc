@@ -1,0 +1,13 @@
+micronaut:
+  application:
+    name: dynamoDBStudy
+  server:
+    port: 8082
+
+aws:
+  region: sa-east-1
+  accessKeyId: test-key
+  secretKey: test-secret
+
+cloud:
+  endpoint: http://localhost:4566
