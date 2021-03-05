@@ -2,6 +2,7 @@ package com.dynamoDB.integration.dynamodb
 
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient
 import software.amazon.awssdk.services.dynamodb.model.* // ktlint-disable no-wildcard-imports
+import java.util.HashMap
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -19,6 +20,20 @@ class SynchronousDynamoDbClient(@Inject private val dynamoDbClient: DynamoDbClie
         } catch (e: ResourceNotFoundException) {
             print(e.stackTrace)
             null
+        } catch (e: DynamoDbException) {
+            print(e.stackTrace)
+            null
+        }
+    }
+
+    fun getDynamoDbItem(tableName: String, keyToGet: HashMap<String, AttributeValue>): GetItemResponse? {
+        val request = GetItemRequest.builder()
+            .tableName(tableName)
+            .key(keyToGet)
+            .build()
+
+        return try {
+            dynamoDbClient.getItem(request)
         } catch (e: DynamoDbException) {
             print(e.stackTrace)
             null

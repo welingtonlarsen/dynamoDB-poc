@@ -18,7 +18,7 @@ class SynchronousDynamoDbClientIntegrationTest : BehaviorSpec() {
     private lateinit var dynamoDbClient: DynamoDbClient
 
     @Inject
-    private lateinit var sychronousDynamoDbClient: SynchronousDynamoDbClient
+    private lateinit var synchronousDynamoDbClient: SynchronousDynamoDbClient
 
     @Inject
     private lateinit var fakeDataGenerator: Faker
@@ -35,11 +35,38 @@ class SynchronousDynamoDbClientIntegrationTest : BehaviorSpec() {
             itemValues["SK_CREATION_DATE"] = AttributeValue.builder().s(formattedDate).build()
             itemValues["FAVORITE_NUMBER"] = AttributeValue.builder().s(fakeDataGenerator.random().nextDouble().toString()).build()
 
-            When("inserting the user into an existing DynamoDB Table") {
+            When("inserting the user into an existing DynamoDb Table") {
                 val insertDynamoDbItem =
-                    sychronousDynamoDbClient.insertDynamoDbItem("User", itemValues)
+                    synchronousDynamoDbClient.insertDynamoDbItem("User", itemValues)
+
                 Then("the item should has been inserted") {
                     insertDynamoDbItem shouldNotBe null
+                }
+            }
+        }
+
+        Given("a user item persisted in DynamoDb table") {
+            val tableName = "User"
+            val keyValue = fakeDataGenerator.idNumber().valid()
+            val creationDate: Date = fakeDataGenerator.date().birthday()
+            val formatter = SimpleDateFormat()
+            val formattedDate = formatter.format(creationDate)
+
+            val itemValues = HashMap<String, AttributeValue>()
+            itemValues["PK_USER_ID"] = AttributeValue.builder().s(keyValue).build()
+            itemValues["SK_CREATION_DATE"] = AttributeValue.builder().s(formattedDate).build()
+            itemValues["FAVORITE_NUMBER"] = AttributeValue.builder().s(fakeDataGenerator.random().nextDouble().toString()).build()
+
+            synchronousDynamoDbClient.insertDynamoDbItem(tableName, itemValues)
+
+            When("requesting the user to DynamoDb table") {
+                val keyToGet = hashMapOf<String, AttributeValue>()
+                keyToGet["PK_USER_ID"] = AttributeValue.builder().s(keyValue).build()
+                keyToGet["SK_CREATION_DATE"] = AttributeValue.builder().s(formattedDate).build()
+                val requestedUser = synchronousDynamoDbClient.getDynamoDbItem(tableName, keyToGet)
+
+                Then("the user should has been found") {
+                    requestedUser shouldNotBe null
                 }
             }
         }
