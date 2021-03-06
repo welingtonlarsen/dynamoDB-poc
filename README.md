@@ -38,9 +38,4 @@ The application is executed through a Gradle command that start the Micronaut.
   ### Run the application
     - 1° command: ``` ./gradlew clean build```
     - 2° command: ```./gradlew run```
-
-## Utilização
-- Aternativas open source do client para testar serviços gRPC
--  [BloomRPC](https://appimage.github.io/BloomRPC/)
--  [Insomnia](https://insomnia.rest/)
     
