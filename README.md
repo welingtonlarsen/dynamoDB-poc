@@ -1,6 +1,6 @@
 <div align="center">
 
-![](https://img.shields.io/badge/Status-Em%20Done-brightgreen)
+![](https://img.shields.io/badge/Status-Done-brightgreen)
 </div>
 
 <div align="center">
@@ -25,6 +25,7 @@ This is a CRUD using DynamoDB to understand more about this technology.
     - software-amazon-awssdk-dynamodb
 - Docker
 - Localstack
+- Jdk 8
 
 ## Execution
   ### Execute docker-compose
