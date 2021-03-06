@@ -31,11 +31,11 @@ This is a CRUD using DynamoDB to understand more about this technology.
 ## Execution
 - Scripts
   ### Configure your aws cli:
-      - region: sa-east-1
-      - accessKeyId: test-key
-      - secretKey: test-secret
+      region: sa-east-1
+      accessKeyId: test-key
+      secretKey: test-secret
   ### Start the Localstack:
-      - Command: ```localstack start```
+    - Command: ```localstack start```
   ### Run docker-compose
     - 1° command: ``` cd dynamoDb-poc```
     - 2° command: ```docker-compose -f docker-compose.yml up```
