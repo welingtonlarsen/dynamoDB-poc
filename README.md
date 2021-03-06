@@ -31,7 +31,6 @@ This is a CRUD using DynamoDB to understand more about this technology.
 
 The application is executed through a Gradle command that start the Micronaut.
 
-- Scripts
   ### Run docker-compose
     - 1° command: ``` cd dynamoDB-study```
     - 2° command: ```docker-compose -f docker-compose.yml up```
