@@ -27,11 +27,20 @@ This is a CRUD using DynamoDB to understand more about this technology.
 - Localstack
 - Jdk 8
 
-## Execution
+## Execução
 
-  ### Execute docker-compose
-    - 1° command: ``` cd dynamoDB-study```
-    - 2° command: ```docker-compose -f docker-compose.yml up```
-  ### Execute the application
-    - 1° command: ``` ./gradlew clean build```
-    - 2° command: ```./gradlew run```
+A execução das aplicações são feitas através do de um comando Gradle que envoca a inicialização do Micronaut.
+
+- Scripts
+  ### Executar docker-compose
+    - 1° comando: ``` cd src/main/docker/```
+    - 2° comando: ```docker-compose -f docker-compose.yml up```
+  ### Executar a aplicação
+    - 1° comando: ``` ./gradlew build```
+    - 2° comando: ```./gradlew run```
+
+## Utilização
+- Aternativas open source do client para testar serviços gRPC
+-  [BloomRPC](https://appimage.github.io/BloomRPC/)
+-  [Insomnia](https://insomnia.rest/)
+    
