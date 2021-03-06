@@ -36,9 +36,6 @@ This is a CRUD using DynamoDB to understand more about this technology.
       secretKey: test-secret
   ### Start the Localstack:
     - Command: ```localstack start```
-  ### Run docker-compose
-    - 1° command: ``` cd dynamoDb-poc```
-    - 2° command: ```docker-compose -f docker-compose.yml up```
   ### Run the application
     - 1° command: ``` ./gradlew clean build```
     - 2° command: ```./gradlew run```
