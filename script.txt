@@ -1,5 +1,0 @@
-aws --endpoint-url=http://localhost:4566 dynamodb create-table
---table-name User
---attribute-definitions AttributeName=PK_USER_ID,AttributeType=S AttributeName=SK_CREATION_DATE,AttributeType=S
---key-schema AttributeName=PK_USER_ID,KeyType=HASH AttributeName=SK_CREATION_DATE,KeyType=RANGE
---provisioned-throughput ReadCapacityUnits=2,WriteCapacityUnits=2

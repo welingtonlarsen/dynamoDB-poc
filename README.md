@@ -33,7 +33,7 @@ The application is executed through a Gradle command that start the Micronaut.
 
 - Scripts
   ### Run docker-compose
-    - 1° command: ``` cd dynamoDB-study```
+    - 1° command: ``` cd dynamoDb-poc```
     - 2° command: ```docker-compose -f docker-compose.yml up```
   ### Run the application
     - 1° command: ``` ./gradlew clean build```
