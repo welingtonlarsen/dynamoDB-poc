@@ -106,7 +106,7 @@ class SynchronousDynamoDbClientIntegrationTest(
             // Persisting the user
             synchronousDynamoDbClient.insertDynamoDbItem(tableName, itemValues)
 
-            // This key will be used in follows conditions
+            // This key will be used in next test conditions
             val key = hashMapOf<String, AttributeValue>()
             key["PK_USER_ID"] = AttributeValue.builder().s(keyValue).build()
             key["SK_CREATION_DATE"] = AttributeValue.builder().s(formattedDate).build()

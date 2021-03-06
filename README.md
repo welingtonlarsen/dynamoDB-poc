@@ -25,8 +25,9 @@ This is a CRUD using DynamoDB to understand more about this technology.
     - software-amazon-awssdk-dynamodb
 - Docker
 - Localstack
-- Jdk 8
 - Aws
+- Jdk 8
+- Java Faker
 
 ## Execution
 - Scripts
