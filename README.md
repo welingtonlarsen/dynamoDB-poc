@@ -26,12 +26,16 @@ This is a CRUD using DynamoDB to understand more about this technology.
 - Docker
 - Localstack
 - Jdk 8
+- Aws
 
 ## Execution
-
-The application is executed through a Gradle command that start the Micronaut.
-
 - Scripts
+  ### Configure your aws cli:
+      - region: sa-east-1
+      - accessKeyId: test-key
+      - secretKey: test-secret
+  ### Start the Localstack:
+      - Command: ```localstack start```
   ### Run docker-compose
     - 1° command: ``` cd dynamoDb-poc```
     - 2° command: ```docker-compose -f docker-compose.yml up```
