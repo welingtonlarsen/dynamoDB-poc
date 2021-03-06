@@ -69,6 +69,16 @@ class SynchronousDynamoDbClientIntegrationTest : BehaviorSpec() {
                     requestedUser shouldNotBe null
                 }
             }
+            When("updating the user") {
+                val keyPair = hashMapOf<String, AttributeValue>()
+                keyPair["PK_USER_ID"] = AttributeValue.builder().s(keyValue).build()
+                keyPair["SK_CREATION_DATE"] = AttributeValue.builder().s(formattedDate).build()
+
+                val updatedUser = synchronousDynamoDbClient.updateDynamoDbItem(tableName, keyPair, "FAVORITE_NUMBER", "123")
+                Then("the user should has been updated") {
+                    updatedUser shouldNotBe null
+                }
+            }
         }
     }
 }

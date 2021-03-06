@@ -2,6 +2,7 @@ package com.dynamoDB.integration.dynamodb
 
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient
 import software.amazon.awssdk.services.dynamodb.model.* // ktlint-disable no-wildcard-imports
+import software.amazon.awssdk.services.dynamodb.model.AttributeValue
 import java.util.HashMap
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -34,6 +35,35 @@ class SynchronousDynamoDbClient(@Inject private val dynamoDbClient: DynamoDbClie
 
         return try {
             dynamoDbClient.getItem(request)
+        } catch (e: DynamoDbException) {
+            print(e.stackTrace)
+            null
+        }
+    }
+
+    fun updateDynamoDbItem(tableName: String, key: HashMap<String, AttributeValue>, column: String, newValue: String): UpdateItemResponse? {
+        val updateValue = hashMapOf<String, AttributeValueUpdate>()
+        updateValue[column] = AttributeValueUpdate.builder()
+            .value(
+                AttributeValue
+                    .builder()
+                    .s(newValue)
+                    .build()
+            )
+            .action(AttributeAction.PUT)
+            .build()
+
+        val request = UpdateItemRequest.builder()
+            .tableName(tableName)
+            .key(key)
+            .attributeUpdates(updateValue)
+            .build()
+
+        return try {
+            dynamoDbClient.updateItem(request)
+        } catch (e: ResourceNotFoundException) {
+            print(e.stackTrace)
+            null
         } catch (e: DynamoDbException) {
             print(e.stackTrace)
             null
