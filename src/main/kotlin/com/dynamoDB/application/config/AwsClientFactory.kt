@@ -15,7 +15,7 @@ class AwsClientFactory(
 ) {
     @Bean
     @Primary
-    fun dynamoDbCLient(): DynamoDbClient = DynamoDbClient.builder()
+    fun dynamoDbClient(): DynamoDbClient = DynamoDbClient.builder()
         .region(Region.of(region!!))
         .endpointOverride(URI.create(endpoint!!))
         .build()

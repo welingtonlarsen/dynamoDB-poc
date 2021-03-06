@@ -24,38 +24,40 @@ class SynchronousDynamoDbClientIntegrationTest(
 ) : BehaviorSpec() {
     override fun beforeSpec(spec: Spec) {
         // Creating table User
-        val createTableRequest = CreateTableRequest.builder()
-            .attributeDefinitions(
-                AttributeDefinition.builder()
-                    .attributeName("PK_USER_ID")
-                    .attributeType(ScalarAttributeType.S)
-                    .build(),
-                AttributeDefinition.builder()
-                    .attributeName("SK_CREATION_DATE")
-                    .attributeType(ScalarAttributeType.S)
-                    .build()
-            )
-            .keySchema(
-                KeySchemaElement.builder()
-                    .attributeName("PK_USER_ID")
-                    .keyType(KeyType.HASH)
-                    .build(),
-                KeySchemaElement.builder()
-                    .attributeName("SK_CREATION_DATE")
-                    .keyType(KeyType.RANGE)
-                    .build()
-            )
-            .provisionedThroughput(
-                ProvisionedThroughput.builder()
-                    .readCapacityUnits(2L)
-                    .writeCapacityUnits(2L)
-                    .build()
-            )
-            .tableName("User")
-            .build()
+        val createTableRequest = getCreateTableRequest()
         dynamoDbClient.createTable(createTableRequest)
         super.beforeSpec(spec)
     }
+
+    private fun getCreateTableRequest() = CreateTableRequest.builder()
+        .attributeDefinitions(
+            AttributeDefinition.builder()
+                .attributeName("PK_USER_ID")
+                .attributeType(ScalarAttributeType.S)
+                .build(),
+            AttributeDefinition.builder()
+                .attributeName("SK_CREATION_DATE")
+                .attributeType(ScalarAttributeType.S)
+                .build()
+        )
+        .keySchema(
+            KeySchemaElement.builder()
+                .attributeName("PK_USER_ID")
+                .keyType(KeyType.HASH)
+                .build(),
+            KeySchemaElement.builder()
+                .attributeName("SK_CREATION_DATE")
+                .keyType(KeyType.RANGE)
+                .build()
+        )
+        .provisionedThroughput(
+            ProvisionedThroughput.builder()
+                .readCapacityUnits(2L)
+                .writeCapacityUnits(2L)
+                .build()
+        )
+        .tableName("User")
+        .build()
 
     override fun afterSpec(spec: Spec) {
         // Deleting table User

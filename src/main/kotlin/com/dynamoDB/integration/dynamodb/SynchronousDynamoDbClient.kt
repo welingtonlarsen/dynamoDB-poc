@@ -8,8 +8,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class SynchronousDynamoDbClient(@Inject private val dynamoDbClient: DynamoDbClient) {
-
+class SynchronousDynamoDbClient(
+    @Inject
+    private val dynamoDbClient: DynamoDbClient
+) {
     fun insertDynamoDbItem(tableName: String, itemValues: Map<String, AttributeValue>): PutItemResponse? {
         val request = PutItemRequest.builder()
             .tableName(tableName)

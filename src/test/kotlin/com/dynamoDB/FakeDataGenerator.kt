@@ -7,7 +7,6 @@ import javax.inject.Singleton
 
 @Factory
 class FakeDataGenerator {
-
     @Singleton
     fun builder(): Faker = Faker(Locale("pt_BR"))
 }
