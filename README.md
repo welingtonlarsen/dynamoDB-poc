@@ -28,6 +28,7 @@ This is a CRUD using DynamoDB to understand more about this technology.
 - Jdk 8
 
 ## Execution
+
   ### Execute docker-compose
     - 1° command: ``` cd dynamoDB-study```
     - 2° command: ```docker-compose -f docker-compose.yml up```
